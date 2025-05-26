@@ -1,9 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import DischcoveryApp from './DischcoveryApp.jsx'
+import DishcoveryApp from './DishcoveryApp.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <DischcoveryApp />
+    <DishcoveryApp />
   </StrictMode>,
 )
