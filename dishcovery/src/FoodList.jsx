@@ -1,6 +1,6 @@
 import FoodItem from "./FoodItem";
 
-function FoodList({ results, searchTerm }) {
+function FoodList({ results, searchTerm, language }) {
     if (searchTerm.length < 2) {
         return (
             <ul>
@@ -16,8 +16,8 @@ function FoodList({ results, searchTerm }) {
     } else {
         return (
             <ul>
-                {results.map((name, index) => (
-                    <FoodItem key={index} name={name}/>
+                {results.map((name) => (
+                    <FoodItem key={name} name={name} language={language}/>
                 ))}
             </ul>
         );

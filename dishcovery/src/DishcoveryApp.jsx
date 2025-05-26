@@ -3,6 +3,7 @@ import FoodList from "./FoodList";
 
 function DishcoveryApp() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [language, setLanguage] = useState("sv");
   const [results, setResults] = useState([]);
 
   useEffect(() => {
@@ -14,7 +15,7 @@ function DishcoveryApp() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=${encodeURIComponent(searchTerm)}`
+          `https://${language}.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=${encodeURIComponent(searchTerm)}`
         );
 
         const data = await response.json();
@@ -28,7 +29,7 @@ function DishcoveryApp() {
     };
 
     fetchData();
-  }, [searchTerm]);
+  }, [searchTerm, language]);
   
   return (
     <div className="container">
@@ -42,11 +43,31 @@ function DishcoveryApp() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="sv"
+              checked={language === "sv"}
+              onChange={() => setLanguage("sv")}
+            />
+            Svenska
+          </label>
+          <label style={{ marginLeft: "10px" }}>
+            <input
+              type="radio"
+              value="en"
+              checked={language === "en"}
+              onChange={() => setLanguage("en")}
+            />
+            Engelska
+          </label>
+        </div>
       </fieldset>
 
       <hr></hr>
       <h2>Livsmedel</h2>
-      <FoodList results={results} searchTerm={searchTerm}/>
+      <FoodList results={results} searchTerm={searchTerm} language={language}/>
       
     </div>
   );
