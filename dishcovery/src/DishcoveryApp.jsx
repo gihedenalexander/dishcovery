@@ -3,8 +3,8 @@ import FoodList from "./FoodList";
 
 function DishcoveryApp() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [language, setLanguage] = useState("sv");
   const [results, setResults] = useState([]);
+  const spoonacularApiKey = import.meta.env.VITE_SPOONACULAR_API_KEY;
 
   useEffect(() => {
     if (searchTerm.length < 2) {
@@ -15,60 +15,38 @@ function DishcoveryApp() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://${language}.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=${encodeURIComponent(searchTerm)}`
+          `https://api.spoonacular.com/food/ingredients/search?query=${encodeURIComponent(searchTerm)}&apiKey=${spoonacularApiKey}`
         );
 
         const data = await response.json();
-        const titles = data.query.search.map((item) => item.title);
-        setResults(titles);
-
+        
+        setResults(data.results || []);
       } catch (error) {
-        console.error("Error fetching from Wikipedia: ", error);
+        console.error("Error fetching from Spoonacular: ", error);
         setResults([]);
       }
     };
 
     fetchData();
-  }, [searchTerm, language]);
+  }, [searchTerm]);
   
   return (
     <div className="container">
       <h1>DishCovery</h1>
 
       <fieldset>
-        <legend>Sök efter en maträtt eller ett livsmedel</legend>
+        <legend>Search for a dish or ingredient</legend>
         <input
           type="text"
           placeholder="Ex: Pizza, Sushi..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <div>
-          <label>
-            <input
-              type="radio"
-              value="sv"
-              checked={language === "sv"}
-              onChange={() => setLanguage("sv")}
-            />
-            Svenska
-          </label>
-          <label style={{ marginLeft: "10px" }}>
-            <input
-              type="radio"
-              value="en"
-              checked={language === "en"}
-              onChange={() => setLanguage("en")}
-            />
-            Engelska
-          </label>
-        </div>
       </fieldset>
 
       <hr></hr>
-      <h2>Livsmedel</h2>
-      <FoodList results={results} searchTerm={searchTerm} language={language}/>
-      
+      <h2>Foods</h2>
+      <FoodList results={results} searchTerm={searchTerm}/>
     </div>
   );
 }
