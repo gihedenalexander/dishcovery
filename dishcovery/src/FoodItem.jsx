@@ -5,7 +5,6 @@ function FoodItem({ name }) {
   const [loading, setLoading] = useState(false);
 
   const openAiApiKey = import.meta.env.VITE_OPENAI_API_KEY;
-  console.log(openAiApiKey);
 
   const fetchFunFact = async () => {
     setLoading(true);
