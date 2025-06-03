@@ -2,14 +2,20 @@ import dotenv from "dotenv";
 import express from "express";
 import axios from "axios";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 const app = express();
-app.use(express.json());
+app.use(express.json());  
 app.use(cors());
 
-const openAiApiKey = process.env.VITE_OPENAI_API_KEY;
+const openAiApiKey = process.env.OPENAI_API_KEY;
+
 
 app.post("/chat", async (req, res) => {
   const { name } = req.body;
@@ -47,4 +53,4 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+app.listen(5001, () => console.log("Server running on port 5001"));
