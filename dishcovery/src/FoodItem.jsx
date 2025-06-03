@@ -11,31 +11,16 @@ function FoodItem({ name }) {
     setFact(null);
 
     try {
-      const response = await fetch(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${openAiApiKey}`,
-          },
-          body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [
-              {
-                role: "user",
-                content: `Tell me a fun or historical fact about the food item "${name}". Keep it short.`,
-              },
-            ],
-            // Styr hur kreativ botten är i sina svar - 0 är strikt, 1 är kreativ
-            temperature: 0.7,
-          }),
-        }
-      );
+      const response = await fetch("http://localhost:3000/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name }),
+      });
 
       const data = await response.json();
-      const message = data.choices?.[0]?.message?.content; // Optional chaining (alla '?') som gör att appen inte kraschar om något steg är undefined/null
-      setFact(message || "No fact was found!");
+      setFact(data.fact || "No fact was found!");
     } catch (error) {
       console.error("Error fetching fun fact:", error);
       setFact(`Could not retrieve any intriguing fact of ${name}`);
