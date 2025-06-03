@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import FoodList from "./FoodList";
+import Navbar from "./Navbar";
+import "./styles.css";
 
 function DishcoveryApp() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,11 +17,13 @@ function DishcoveryApp() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api.spoonacular.com/food/ingredients/search?query=${encodeURIComponent(searchTerm)}&apiKey=${spoonacularApiKey}`
+          `https://api.spoonacular.com/food/ingredients/search?query=${encodeURIComponent(
+            searchTerm
+          )}&apiKey=${spoonacularApiKey}`
         );
 
         const data = await response.json();
-        
+
         setResults(data.results || []);
       } catch (error) {
         console.error("Error fetching from Spoonacular: ", error);
@@ -29,26 +33,29 @@ function DishcoveryApp() {
 
     fetchData();
   }, [searchTerm]);
-  
+
   return (
-    <div className="container">
-      <h1>DishCovery</h1>
+    <>
+      <Navbar />
+      <div className="container">
+        <h1>DishCovery</h1>
 
-      <fieldset>
-        <legend>Search for a dish or ingredient</legend>
-        <input
-          type="text"
-          placeholder="Ex: Pizza, Sushi..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </fieldset>
+        <fieldset>
+          <legend>Search for a dish or ingredient</legend>
+          <input
+            type="text"
+            placeholder="Ex: Pizza, Sushi..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </fieldset>
 
-      <hr></hr>
-      <h2>Foods</h2>
-      <FoodList results={results} searchTerm={searchTerm}/>
-    </div>
+        <hr></hr>
+        <h2>Foods</h2>
+        <FoodList results={results} searchTerm={searchTerm} />
+      </div>
+    </>
   );
 }
 
-export default DishcoveryApp
+export default DishcoveryApp;

@@ -1,0 +1,22 @@
+h1 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+fieldset {
+  margin-top: 50px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+legend {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  margin-top: 30px;
+}
