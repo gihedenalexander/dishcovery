@@ -1,18 +1,18 @@
 export function Navbar() {
   return (
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">
+    <ul className="nav justify-content-center">
+      <li className="nav-item">
+        <a className="nav-link active" aria-current="page" href="#">
           Home
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
+      <li className="nav-item">
+        <a className="nav-link" href="#">
           About
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
+      <li className="nav-item">
+        <a className="nav-link" href="#">
           Favourite Foods
         </a>
       </li>
