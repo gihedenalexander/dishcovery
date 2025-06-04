@@ -1,8 +1,10 @@
 import { useState } from "react";
 
-function FoodItem({ name }) {
+function FoodItem({ name, image }) {
   const [fact, setFact] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const imageUrl = image ? `https://spoonacular.com/cdn/ingredients_250x250/${image}` : null;
 
   const fetchFunFact = async () => {
     setLoading(true);
@@ -32,16 +34,37 @@ function FoodItem({ name }) {
       favoriteFood.push(newFavorite);
       localStorage.setItem("favorites", JSON.stringify(favoriteFood));
       console.log(`Added to favorites: ${name}`);
-      alert(`"${name}" fact has been added to your favorites`);
   };
 
   return (
-    <li className="list-group-item d-flex justify-content-between align-items-center">
-      <div>
+    <li className="list-group-item">
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "150px 120px 1fr auto",
+          alignItems: "center",
+          columnGap: "1rem",
+        }}
+      >
         <strong>{name}</strong>
-        {fact && <p className="mt-2 mb-0">{fact}</p>}
-      </div>
-      <div className="d-flex gap-2">
+        
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt={name}
+              style={{
+                width: "100px",
+                height: "75px",
+                objectFit: "cover",
+                borderRadius: "8px",
+              }}
+            />
+          )}
+        </div>
+
+        <div></div> {/* Skapar avståndet mellan bilden och knappen */}
+
         <button
           className="btn btn-primary"
           onClick={fetchFunFact}
@@ -49,12 +72,42 @@ function FoodItem({ name }) {
         >
           {loading ? "Loading..." : "Show intriguing fact"}
         </button>
-        {fact && (
-          <button className="btn btn-favorite btn-success" onClick={addToFavorites}>
+      </div>
+
+      <hr style={{ margin: "0.5rem 0" }}/>
+
+      {fact && (
+        <>
+          <p>
+            <strong>Did you know?</strong> {fact}
+          </p>
+          <button 
+            className="btn btn-favorite btn-success" 
+            onClick={() => {
+              addToFavorites();
+              setShowAlert(true);
+              setTimeout(() => setShowAlert(false), 4000);
+            }}
+          >
             Add to favorites
           </button>
-        )}
-      </div>
+
+          {showAlert && (
+            <div
+              style={{
+                backgroundcolor: "#ffffff",
+                border: "1px solid green",
+                padding: "10px 15px",
+                borderRadius: "8px",
+                marginTop: "10px",
+                boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)"
+              }}
+            >
+              ✅ An interesting fact about "{name}"" has been added to your favorites!
+            </div>
+          )}
+        </>
+      )}
     </li>
   );
 }

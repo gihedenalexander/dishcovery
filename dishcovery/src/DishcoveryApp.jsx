@@ -23,6 +23,7 @@ function DishcoveryApp() {
           )}&apiKey=${spoonacularApiKey}`
         );
         const data = await response.json();
+
         setResults(data.results || []);
       } catch (error) {
         console.error("Error fetching from Spoonacular: ", error);
@@ -40,7 +41,9 @@ function DishcoveryApp() {
         return (
           <div className="container">
             <h1>About DishCovery</h1>
-            <p>Discover different interesting facts about your favorite foods and ingredients</p>
+            <hr></hr>
+            <h3 style={{ textAlign: "center" }}>Discover different interesting facts about your favorite foods, dishes and ingredients,
+              and save them to your list of favorites!</h3>
           </div>
         );
       default:
@@ -48,7 +51,7 @@ function DishcoveryApp() {
           <div className="container">
             <h1>DishCovery</h1>
             <fieldset>
-              <legend>Search for a dish or ingredient</legend>
+              <legend>Search for a food, dish or ingredient</legend>
               <input
                 type="text"
                 placeholder="Ex: Pizza, Sushi..."
@@ -58,8 +61,11 @@ function DishcoveryApp() {
             </fieldset>
             <hr />
             <h2>Foods</h2>
+            <br></br>
             <FoodList results={results} searchTerm={searchTerm} />
+            <br></br>
           </div>
+
         );
     }
   };
