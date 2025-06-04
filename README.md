@@ -19,5 +19,6 @@ Vue är ett kompakt och effektivt ramverk som också är känt för sin snabbhet
 # Referenser
 [1] “Angular vs React vs Vue: Core Differences,” BrowserStack, May 9, 2025. [Online]. Available: https://www.browserstack.com/guide/angular-vs-react-vs-vue. Accessed: Jun. 3, 2025.  
 [2] N. Emadamerho-Atori, “Angular vs. React vs. Vue.js: Comparing performance,” LogRocket, Oct 7, 2024. [Online]. Available: https://blog.logrocket.com/angular-vs-react-vs-vue-js-comparing-performance/. Accessed: Jun. 3, 2025.
+
 [3] “Angular Vs React Vs Vue: Which One To Choose,” TatvaSoft, Apr. 28, 2025. [Online]. Available: https://www.tatvasoft.com/blog/angular-vs-react-vs-vue/. Accessed: Jun. 3, 2025. 
 
