@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import FoodList from "./FoodList";
 import Navbar from "./Navbar";
+import Favorites from "./Favorites";
 import "./styles.css";
 
 function DishcoveryApp() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
+  const [currentPage, setCurrentPage] = useState("home");
   const spoonacularApiKey = import.meta.env.VITE_SPOONACULAR_API_KEY;
 
   useEffect(() => {
@@ -13,7 +15,6 @@ function DishcoveryApp() {
       setResults([]);
       return;
     }
-
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -21,7 +22,6 @@ function DishcoveryApp() {
             searchTerm
           )}&apiKey=${spoonacularApiKey}`
         );
-
         const data = await response.json();
 
         const results = Array.isArray(data.results) ? data.results : [];
@@ -37,30 +37,44 @@ function DishcoveryApp() {
         setResults([]);
       }
     };
-
     fetchData();
   }, [searchTerm]);
 
+  const renderPages = () => {
+    switch (currentPage) {
+      case "favorites":
+        return <Favorites />;
+      case "about":
+        return (
+          <div className="container">
+            <h1>About DishCovery</h1>
+            <p>Discover different interesting facts about your favorite foods and ingredients</p>
+          </div>
+        );
+      default:
+        return (
+          <div className="container">
+            <h1>DishCovery</h1>
+            <fieldset>
+              <legend>Search for a dish or ingredient</legend>
+              <input
+                type="text"
+                placeholder="Ex: Pizza, Sushi..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </fieldset>
+            <hr />
+            <h2>Foods</h2>
+            <FoodList results={results} searchTerm={searchTerm} />
+          </div>
+        );
+    }
+  };
   return (
     <>
-      <Navbar />
-      <div className="container">
-        <h1>DishCovery</h1>
-
-        <fieldset>
-          <legend>Search for a dish, food or ingredient</legend>
-          <input
-            type="text"
-            placeholder="Ex: Pizza, Sushi..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </fieldset>
-
-        <hr></hr>
-        <h2>Foods</h2>
-        <FoodList results={results} searchTerm={searchTerm} />
-      </div>
+      <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      {renderPages()}
     </>
   );
 }
