@@ -17,7 +17,7 @@ function FoodList({ results, searchTerm }) {
     return (
       <ul className="list-group">
         {results.map((item) => (
-          <FoodItem key={item.id} name={item.name} />
+          <FoodItem key={item.id} name={item.name} image={item.image} />
         ))}
       </ul>
     );

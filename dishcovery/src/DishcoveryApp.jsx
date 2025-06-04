@@ -24,7 +24,14 @@ function DishcoveryApp() {
 
         const data = await response.json();
 
-        setResults(data.results || []);
+        const results = Array.isArray(data.results) ? data.results : [];
+        setResults(
+          results.map((item) => ({
+            id: item.id,
+            name: item.name,
+            image: `https://spoonacular.com/cdn/ingredients_250x250/${item.image}`,
+          }))
+        );
       } catch (error) {
         console.error("Error fetching from Spoonacular: ", error);
         setResults([]);
@@ -41,7 +48,7 @@ function DishcoveryApp() {
         <h1>DishCovery</h1>
 
         <fieldset>
-          <legend>Search for a dish or ingredient</legend>
+          <legend>Search for a dish, food or ingredient</legend>
           <input
             type="text"
             placeholder="Ex: Pizza, Sushi..."
