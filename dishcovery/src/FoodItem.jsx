@@ -103,7 +103,7 @@ function FoodItem({ name, image }) {
                 boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)"
               }}
             >
-              ✅ An interesting fact about "{name}"" has been added to your favorites!
+              ✅ An interesting fact about "{name}" has been added to your favorites!
             </div>
           )}
         </>
