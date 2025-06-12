@@ -8,6 +8,7 @@ För att använda denna applikation krävs det att man har tillgång till två A
    Alltså kan de se ut enligt följande inuti .env-filen:
 
    VITE_SPOONACULAR_API_KEY=minspoonacularnyckelhär
+   
    OPENAI_API_KEY=sk_proj_minopenainyckelhär
 
 
