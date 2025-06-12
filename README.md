@@ -1,10 +1,11 @@
 # DishCovery
 React-projekt som låter användaren söka efter matrelaterade föremål genom Spoonaculars API. Därefter kan användaren generera historisk eller intressant kuriosa kring dessa föremål genom ett knapptryck, som promptar OpenAIs API (GPT). Användarens favoritkuriosa kan därefter sparas i en lista av dennes favoriter, genom localStorage.
 
-För att köra appen (möjligt att det krävs att man kör kommandot "npm install" innan man börjar):
+För att köra appen:
 
-1. Öppna en terminal och navigera till backend-mappen och kör kommandot "node server.js".
-2. Öppna ytterligare en terminal och navigera till den innersta "dishcovery"-mappen och kör kommandot "npm run dev".
+1. Kör kommandot "npm run dev".
+2. Öppna en terminal och navigera till backend-mappen och kör kommandot "node server.js".
+3. Öppna ytterligare en terminal och navigera till den innersta "dishcovery"-mappen och kör kommandot "npm run dev".
 
 
 # Motivation av val av React vs. Angular och Vue för att utveckla DishCovery
