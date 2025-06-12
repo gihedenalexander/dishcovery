@@ -1,7 +1,7 @@
 # DishCovery
 React-projekt som låter användaren söka efter matrelaterade föremål genom Spoonaculars API. Därefter kan användaren generera historisk eller intressant kuriosa kring dessa föremål genom ett knapptryck, som promptar OpenAIs API (GPT). Användarens favoritkuriosa kan därefter sparas i en lista av dennes favoriter, genom localStorage.
 
-För att använda denna applikation krävs det att man har tillgång till två API-nycklar, en för Spoonacular, och en för OpenAI. Dessa bör läggas i en .env-fil, som i detta projekt ska läggas i den innersta "dishcovery"-mappen. Namnge därefter API-nycklarna enligt följande:
+För att använda denna applikation krävs det att man har tillgång till två API-nycklar, en för Spoonacular, och en för OpenAI. Dessa behövs läggas i en .env-fil, som i detta projekt ska ligga i den innersta "dishcovery"-mappen. Namnge därefter API-nycklarna enligt följande:
 1. För Spoonaculars nyckel, namnge enligt: "VITE_SPOONACULAR_API_KEY".
 2. För OpenAIs nyckel, namnge enligt: "OPENAI_API_KEY".
 
