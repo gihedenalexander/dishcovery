@@ -13,7 +13,7 @@ För att använda denna applikation krävs det att man har tillgång till två A
 
 # För att köra appen:
 
-1. Kör kommandot "npm run dev".
+1. Kör kommandot "npm install".
 2. Öppna en terminal och navigera till backend-mappen och kör kommandot "node server.js".
 3. Öppna ytterligare en terminal och navigera till den innersta "dishcovery"-mappen och kör kommandot "npm run dev".
 
